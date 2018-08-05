@@ -125,7 +125,7 @@ var DefaultTheme = {
 
   // Used in Menu and PageHeader to make sure the top parts have
   // the same height.
-  pageHeadingHeight: 200,
+  pageHeadingHeight: 100,
 
   // Used for navigation bar
   navBarBackground: "#F2F2F2",
@@ -4216,7 +4216,7 @@ PageHeader.propTypes = {
   superTitle: PropTypes.string.isRequired
 };
 
-var SIDEBAR_WIDTH = 251;
+var SIDEBAR_WIDTH = 0;
 var SIDEBAR_ANIMATION_DURATION = 0.25;
 
 injectGlobal("@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,400italic);@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700);body{margin:0;padding:0;}");
@@ -4260,9 +4260,9 @@ var getStyles$1 = function getStyles(theme, sidebarVisible) {
       background: theme.sidebarColor,
       color: "#fff",
       overflowY: "auto",
-      position: "fixed",
+      position: "sticky",
       height: "100vh",
-      width: SIDEBAR_WIDTH - 1,
+      width: "250px",
       top: 0,
       left: 0,
       borderRight: "1px solid " + theme.sidebarColorLine,
@@ -4342,7 +4342,12 @@ var AppLayout = function (_React$Component) {
 
     return React__default.createElement(
       "div",
-      { className: /*#__PURE__*/ /*#__PURE__*/css(styles.container, "label:AppLayout;", "label:className;") },
+      { className: "main-container " + /*#__PURE__*/css(styles.container, "label:AppLayout;") },
+      React__default.createElement(
+        "div",
+        { className: "sidenav " + /*#__PURE__*/css(styles.sideNav, "label:AppLayout;") },
+        sideNav
+      ),
       React__default.createElement(
         "div",
         { className: /*#__PURE__*/ /*#__PURE__*/css(styles.content, "label:AppLayout;", "label:className;") },
@@ -4368,15 +4373,10 @@ var AppLayout = function (_React$Component) {
         onTouchEnd: this.toggleSidebar
       }),
       React__default.createElement("div", {
-        className: /*#__PURE__*/ /*#__PURE__*/css(styles.navBackground, "label:AppLayout;", "label:className;"),
+        className: "nav-background " + /*#__PURE__*/css(styles.navBackground, "label:AppLayout;"),
         onClick: this.toggleSidebar,
         onTouchEnd: this.toggleSidebar
-      }),
-      React__default.createElement(
-        "div",
-        { className: /*#__PURE__*/ /*#__PURE__*/css(styles.sideNav, "label:AppLayout;", "label:className;") },
-        sideNav
-      )
+      })
     );
   };
 
@@ -4612,39 +4612,13 @@ var Menu = function (_React$Component) {
 
     var currentStyle = style$2(theme);
 
-    var titleString = title ? title : "";
-
     return React__default.createElement(
       "div",
       { className: /*#__PURE__*/ /*#__PURE__*/css(currentStyle.bar, "label:Menu;", "label:className;") },
       React__default.createElement(
         "div",
         { className: /*#__PURE__*/ /*#__PURE__*/css({ flexGrow: 1 }, "label:Menu;", "label:className;") },
-        React__default.createElement(
-          Link,
-          { to: basePath, className: /*#__PURE__*/ /*#__PURE__*/css({ textDecoration: "none" }, "label:Menu;", "label:className;") },
-          React__default.createElement(
-            "h1",
-            { className: /*#__PURE__*/ /*#__PURE__*/css(currentStyle.h1, "label:Menu;", "label:className;") },
-            logoSrc ? React__default.createElement(
-              "div",
-              {
-                className: /*#__PURE__*/ /*#__PURE__*/css(_extends({}, currentStyle.logo, {
-                  backgroundImage: "url(\"" + logoSrc + "\")"
-                }), "label:Menu;", "label:className;")
-              },
-              React__default.createElement(
-                "span",
-                { className: /*#__PURE__*/ /*#__PURE__*/css(currentStyle.logoTitle, "label:Menu;", "label:className;") },
-                titleString
-              )
-            ) : React__default.createElement(
-              "div",
-              { className: /*#__PURE__*/ /*#__PURE__*/css(currentStyle.title, "label:Menu;", "label:className;") },
-              titleString
-            )
-          )
-        ),
+        React__default.createElement(Link, { to: basePath, className: /*#__PURE__*/ /*#__PURE__*/css({ textDecoration: "none" }, "label:Menu;", "label:className;") }),
         React__default.createElement(
           "ul",
           { className: /*#__PURE__*/ /*#__PURE__*/css(currentStyle.list, "label:Menu;", "label:className;") },

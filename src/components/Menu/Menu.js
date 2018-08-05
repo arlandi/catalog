@@ -84,24 +84,7 @@ class Menu extends React.Component {
     return (
       <div className={css(currentStyle.bar)}>
         <div className={css({ flexGrow: 1 })}>
-          <Link to={basePath} className={css({ textDecoration: "none" })}>
-            <h1 className={css(currentStyle.h1)}>
-              {logoSrc ? (
-                <div
-                  className={css({
-                    ...currentStyle.logo,
-                    backgroundImage: `url("${logoSrc}")`
-                  })}
-                >
-                  <span className={css(currentStyle.logoTitle)}>
-                    {titleString}
-                  </span>
-                </div>
-              ) : (
-                <div className={css(currentStyle.title)}>{titleString}</div>
-              )}
-            </h1>
-          </Link>
+          <Link to={basePath} className={css({ textDecoration: "none" })} />
           <ul className={css(currentStyle.list)}>
             {pageTree.filter(page => !page.hideFromMenu).map(page => (
               <ListItem key={page.id} page={page} theme={theme} />

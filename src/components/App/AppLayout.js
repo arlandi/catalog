@@ -5,7 +5,7 @@ import { pageShape, pagesShape } from "../../CatalogPropTypes";
 import NavigationBar from "./NavigationBar";
 import PageHeader from "../Page/PageHeader";
 
-const SIDEBAR_WIDTH = 251;
+const SIDEBAR_WIDTH = 0;
 const SIDEBAR_ANIMATION_DURATION = 0.25;
 
 injectGlobal`
@@ -52,9 +52,9 @@ const getStyles = (theme, sidebarVisible) => ({
     background: theme.sidebarColor,
     color: "#fff",
     overflowY: "auto",
-    position: "fixed",
+    position: "sticky",
     height: "100vh",
-    width: SIDEBAR_WIDTH - 1,
+    width: "250px",
     top: 0,
     left: 0,
     borderRight: `1px solid ${theme.sidebarColorLine}`,
@@ -121,7 +121,8 @@ class AppLayout extends React.Component {
     const previousPage = pages[page.index - 1];
 
     return (
-      <div className={css(styles.container)}>
+      <div className={`main-container ${css(styles.container)}`}>
+        <div className={`sidenav ${css(styles.sideNav)}`}>{sideNav}</div>
         <div className={css(styles.content)}>
           <PageHeader
             theme={theme}
@@ -143,11 +144,10 @@ class AppLayout extends React.Component {
           onTouchEnd={this.toggleSidebar}
         />
         <div
-          className={css(styles.navBackground)}
+          className={`nav-background ${css(styles.navBackground)}`}
           onClick={this.toggleSidebar}
           onTouchEnd={this.toggleSidebar}
         />
-        <div className={css(styles.sideNav)}>{sideNav}</div>
       </div>
     );
   }
