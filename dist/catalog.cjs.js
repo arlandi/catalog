@@ -26,7 +26,6 @@ var babelStandalone = require('babel-standalone');
 var url = require('url');
 var DocumentTitle = _interopDefault(require('react-document-title'));
 require('raf/polyfill');
-var reactRouterScroll = require('react-router-scroll');
 
 var seqKey = (function (namespace) {
   var counter = void 0;
@@ -5094,8 +5093,7 @@ var Catalog = function (_Component) {
     return React__default.createElement(reactRouter.Router, {
       key: this.getKey(),
       history: configuration.useBrowserHistory ? reactRouter.browserHistory : reactRouter.hashHistory,
-      routes: configureRoutes(configuration),
-      render: reactRouter.applyRouterMiddleware(reactRouterScroll.useScroll())
+      routes: configureRoutes(configuration)
     });
   };
 

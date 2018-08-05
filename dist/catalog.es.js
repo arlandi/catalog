@@ -11,14 +11,13 @@ import { hcl } from 'd3-color';
 import ReactDOM, { unstable_renderSubtreeIntoContainer, unmountComponentAtNode } from 'react-dom';
 import raf from 'raf';
 import marked from 'marked';
-import { Link, Route, Router, applyRouterMiddleware, browserHistory, hashHistory } from 'react-router';
+import { Link, Route, Router, browserHistory, hashHistory } from 'react-router';
 import Slugger from 'github-slugger';
 import { parse, stringify } from 'srcset';
 import { transform } from 'babel-standalone';
 import { parse as parse$1 } from 'url';
 import DocumentTitle from 'react-document-title';
 import 'raf/polyfill';
-import { useScroll } from 'react-router-scroll';
 
 var seqKey = (function (namespace) {
   var counter = void 0;
@@ -5086,8 +5085,7 @@ var Catalog = function (_Component) {
     return React.createElement(Router, {
       key: this.getKey(),
       history: configuration.useBrowserHistory ? browserHistory : hashHistory,
-      routes: configureRoutes(configuration),
-      render: applyRouterMiddleware(useScroll())
+      routes: configureRoutes(configuration)
     });
   };
 
