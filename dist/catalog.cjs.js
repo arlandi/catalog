@@ -4215,7 +4215,7 @@ PageHeader.propTypes = {
   superTitle: PropTypes.string.isRequired
 };
 
-var SIDEBAR_WIDTH = 0;
+var SIDEBAR_WIDTH = 250;
 var SIDEBAR_ANIMATION_DURATION = 0.25;
 
 injectGlobal("@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,400italic);@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700);body{margin:0;padding:0;}");
@@ -4253,24 +4253,30 @@ var getStyles$1 = function getStyles(theme, sidebarVisible) {
       left: 20,
       position: "absolute",
       top: 20,
-      width: 30
+      width: 30,
+      "@media (min-width: 1000px)": {
+        display: "none"
+      }
     },
     sideNav: {
       background: theme.sidebarColor,
       color: "#fff",
       overflowY: "auto",
-      position: "sticky",
+      position: "absolute",
       height: "100vh",
-      width: "250px",
+      width: SIDEBAR_WIDTH - 1,
       top: 0,
       left: 0,
       borderRight: "1px solid " + theme.sidebarColorLine,
       transform: "translateX(" + (sidebarVisible ? 0 : -SIDEBAR_WIDTH) + "px)",
       transition: "transform " + SIDEBAR_ANIMATION_DURATION + "s ease-in-out",
       WebkitOverflowScrolling: "touch",
+      zIndex: 1,
       "@media (min-width: 1000px)": {
         transform: "translateX(0px)",
-        transition: "none"
+        position: "sticky",
+        transition: "none",
+        flex: "0 0 250px"
       }
     },
     navBackground: {
@@ -4295,10 +4301,7 @@ var getStyles$1 = function getStyles(theme, sidebarVisible) {
       width: "100%",
       flexDirection: "column",
       position: "relative",
-      zIndex: 0, // To create a new stacking context, see #223.
-      "@media (min-width: 1000px)": {
-        paddingLeft: SIDEBAR_WIDTH
-      }
+      zIndex: 0 // To create a new stacking context, see #223.
     }
   };
 };
@@ -4367,7 +4370,7 @@ var AppLayout = function (_React$Component) {
         })
       ),
       React__default.createElement(MenuIcon, {
-        className: /*#__PURE__*/ /*#__PURE__*/css(styles.menuIcon, "label:AppLayout;", "label:className;"),
+        className: "menu-icon " + /*#__PURE__*/css(styles.menuIcon, "label:AppLayout;"),
         onClick: this.toggleSidebar,
         onTouchEnd: this.toggleSidebar
       }),
