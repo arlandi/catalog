@@ -131,6 +131,7 @@ class AppLayout extends React.Component {
             theme={theme}
             title={page.title}
             superTitle={page.superTitle}
+            editLink={page.editLink}
           />
           <div className={css({ flexGrow: 1 })}>{this.props.children}</div>
           {!page.hideFromMenu && (

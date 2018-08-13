@@ -4157,7 +4157,8 @@ var PageHeader = function (_Component) {
     var _props = this.props,
         theme = _props.theme,
         title = _props.title,
-        superTitle = _props.superTitle;
+        superTitle = _props.superTitle,
+        editLink = _props.editLink;
 
 
     var styles = {
@@ -4183,6 +4184,22 @@ var PageHeader = function (_Component) {
       title: _extends({}, heading(theme, 4), {
         color: theme.pageHeadingTextColor,
         margin: 0
+      }),
+      edit: _extends({}, text(theme), {
+        color: 'white',
+        fontSize: '10px',
+        borderRadius: '4px',
+        border: '1px solid white',
+        padding: '5px 16px',
+        verticalAlign: 'middle',
+        marginLeft: '16px',
+        opacity: '0.5',
+        cursor: 'pointer',
+        textDecoration: 'none',
+        transition: 'opacity 0.1s linear',
+        ":hover": {
+          opacity: 1
+        }
       })
     };
 
@@ -4200,7 +4217,12 @@ var PageHeader = function (_Component) {
         React__default.createElement(
           "h1",
           { className: /*#__PURE__*/ /*#__PURE__*/css(styles.title, "label:PageHeader;", "label:className;") },
-          title
+          title,
+          editLink && React__default.createElement(
+            "a",
+            { href: editLink, className: /*#__PURE__*/ /*#__PURE__*/css(styles.edit, "label:PageHeader;", "label:className;") },
+            "Edit This Page"
+          )
         )
       )
     );
@@ -4356,7 +4378,8 @@ var AppLayout = function (_React$Component) {
         React__default.createElement(PageHeader, {
           theme: theme,
           title: page.title,
-          superTitle: page.superTitle
+          superTitle: page.superTitle,
+          editLink: page.editLink
         }),
         React__default.createElement(
           "div",

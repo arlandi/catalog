@@ -24,7 +24,8 @@ const pages = [
   {
     path: "/",
     title: "Introduction",
-    content: markdownLoader("intro")
+    content: markdownLoader("intro"),
+    editLink: "https://github.com/arlandi/catalog/edit/master/docs/intro.md"
   },
   {
     title: "Installation",
